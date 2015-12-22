@@ -1,0 +1,40 @@
+<h3>Battleship! Player <%= @player %></h3>
+<div id="instructions">
+  <% if @winner > 0 %>
+    <%= (@player == @winner) ? "You win!" : "You lose!" %>
+  <% else %>
+    <%= (@player == @game.player_turn) ? "Your turn!" : "Waiting for other player!" %>
+  <% end %>
+</div>
+<% enemy_player = (@player == 1) ? 2 : 1 %>
+<% boards = [
+  { name: "Enemy Board", id: "enemy_board", data: @enemy_board },
+  { name: "Your Board", id: "own_board", data: @own_board }
+  ] %>
+
+<% boards.each_with_index do |board, k| %>
+  <div id="<%= board[:id] %>_container" class="<%= board[:section_class] %>">
+    <div><%= board[:name] %></div>
+    <table id="<%= board[:id] %>" class="board">
+      <% 10.times do |i| %>
+        <tr>
+          <% 10.times do |j| %>
+            <% position = (i * 10) + j %>
+            <% td_value = board[:data][position] %>
+            <% td_class = (td_value == nil) ? "empty" : td_value %>
+            <%= tag(:td, class: td_class, data: { position: position }) %>
+            <%= (i * 10) + j %>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  var player = <%= @player %>;
+  var gameId = <%= @game.id %>;
+  var turn = <%= @game.player_turn %>;
+  var gameOngoing = <%= !(@winner > 0) %>;
+
+</script>

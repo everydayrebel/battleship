@@ -1,0 +1,60 @@
+// Place all the styles related to the games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+body {
+  font-family:sans-serif;
+  text-align: center;
+}
+
+#instructions {
+  text-align: center;
+  height:45px;
+}
+
+#current_ship {
+  position: absolute;
+  background-color: blue;
+}
+
+.board {
+  margin:1em auto;
+  border-collapse:collapse;
+
+  td {
+      width:30px; height:30px;
+      border:1px solid #ccc;
+      text-align:center;
+      font-size:13px;
+
+
+      &.clicked {
+        background-color:yellow;
+        font-weight:bold; color:red;
+      }
+
+      &.empty {
+        background-color:DodgerBlue;
+      }
+
+      &.x {
+        background-color:FireBrick;
+      }
+
+      &.o {
+        background-color:white;
+      }
+
+      &.s {
+        background-color:DimGrey;
+      }
+  }
+}
+
+.winner {
+  background-color: green;
+}
+.loser {
+  background-color: red;
+}
